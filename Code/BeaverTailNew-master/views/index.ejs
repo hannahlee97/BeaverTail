@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Beaver Tail</title>  
+	
+	<!-- Bootstrap, Font Awesome, Aminate, Owl Carausel, Normalize CSS -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/animate.css" rel="stylesheet" type="text/css"/>    
+    <link href="stylesheets/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/owl.theme.default.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/slicknav.min.css" rel="stylesheet" type="text/css"/>
+    
+	<!-- Site CSS -->
+	 
+    <link href="stylesheets/main.css" rel="stylesheet" type="text/css"/>
+	<link href="stylesheets/responsive.css" rel="stylesheet" type="text/css"/>   
+	
+    <!-- Modernizr JS -->
+    <script src="javascripts/modernizr-3.5.0.min.js"></script>
+	<script>
+		function initMap() {
+			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			 
+			 /****** Info Window Contents *******/
+			//  var contentString = '<div id="content">'+
+			// 	 '<div id="siteNotice">'+
+			// 	 '</div>'+
+			// 	 '<div id="showarticles"><strong>articles</strong>'+
+			//  '<ul>'+
+			// 		 '<% for(var i=0; i < maparticle.length; i++) { %>'+
+			// 		   '<li>'+
+			// 			   '<a href="viewarticle/<%= maparticle[i].Title %>">'+'<%= maparticle[i].body %>'+'</a>'+
+			// 			'</li>'+
+			// 		 '<% } %>'+
+			//  '</ul>'+
+			// 	 '</div>'+
+			// 	 '</div>';
+	 
+			//  var infowindow = new google.maps.InfoWindow({
+			// 	 content: contentString
+			//  });
+			
+			var infowindow = new google.maps.InfoWindow();
+
+			 var myLatlng = new google.maps.LatLng(49.2827,-123.1207);
+			 var mapOptions = {
+					zoom: 9,
+					center: myLatlng
+				};
+			 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+			 var marker = [];
+			 '<%  for(var i=0; i < maparticle.length; i++) { %>'
+				/****** Change latitude and longitude here ******/
+				var myLatlng = new google.maps.LatLng('<%= maparticle[i].latitude +  (Math.random() -.5) / 1500 %>' , '<%= maparticle[i].longitude +  (Math.random() -.5) / 1500 %>');
+					
+				
+				/****** Map Marker Options *******/
+				marker['<%= i %>'] = new google.maps.Marker({
+					position: myLatlng,
+					map: map,
+					title:"<%= maparticle[i].Title %>"
+				});
+
+			
+		
+				/****** Info Window With Click *******/
+				google.maps.event.addListener(marker['<%= i %>'], 'click', function() {
+					infowindow.setContent('<a href="viewarticle/<%= maparticle[i].Title %>">'+'<%= maparticle[i].Title %>'+'</a>');
+					infowindow.open(map,marker['<%= i %>']);
+				});
+
+				
+	 
+			 '<% } %>'
+			 var markerCluster = new MarkerClusterer(map, marker,
+			{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',zoomOnClick: false});
+
+			google.maps.event.addListener(markerCluster ,'clusterclick', function(cluster){
+				var markers = cluster.getMarkers();
+
+    		var titles = "";
+    		//Get all the titles
+    		for(var i = 0; i < markers.length; i++) {
+				titles += '<a href="viewarticle/'+markers[i].getTitle()+'"' +'>'+markers[i].getTitle() +'</a><br>';
+			}
+			console.log(titles);
+   
+				let info = new google.maps.Marker({
+					position: cluster.getCenter(),
+					map: map,
+				});
+				info.setVisible(false);
+				infowindow.setContent(titles);
+				infowindow.open(map,info);
+			});
+		 }
+		 
+	 
+	 window.onload = initMap;
+	 </script>
+	<!--favincon-->
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:300,400,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">	
+	<style>
+		#map-canvas{
+		  height:600px;
+		  width:750px;
+		}
+	  </style>
+</head>
+<body>
+	<div class="spinner-cover">
+		<div class="spinner-inner">
+			<div class="spinner">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+	<div class="spinner-cover">
+		<div class="spinner-inner">
+			<div class="spinner">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-12 header">
+							<h1 class="logo"><a href="index.html">BEAVER TAIL</a></h1>
+							<p class="tagline">USER SUBMITTED NEWS SITE</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-nav section_margin">
+				<div class="container-fluid">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 col-md-12 main_nav_cover" id="nav">							
+								<ul id="main-menu">
+                                    </li>
+                                    <% if (session.userName == undefined){%>
+									<li class="menu-item-has-children"><a href="/login">Sign In</a>
+                                    </li>
+                                    <li class="menu-item-has-children"><a href="/signup">Sign Up</a></li>
+                                    <% } %>
+                                    <% if (session.userName!= undefined && session.Role ==1){%>
+                                    <li class="menu-item-has-children">
+                                        <a href="/account"> Register Account</a>
+                                    </li>   
+                                    <li class="menu-item-has-children">
+                                        <a href="/current_account"> Current Account</a>
+                                    </li>      
+                                    <% } %>
+                                    <% if(typeof(session.userName) != "undefined"){ %>
+                                    <li class="menu-item-has-children">
+                                        <a href="createNews">Create News</a>
+                                    </li> 
+                                    <% } %>
+                                    <li class="menu-item-has-children"><a href="category-grid.html">About Us</a></li>
+                                    <% if (session.userName!= undefined){%>
+                                    <li class="menu-item-has-children">
+                                        <a href="editprofile">Hello <%= session.userName %></a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="/logout">Logout</a>
+                                    </li>
+                                    <% } %>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="container animate-box">
+					<div class="row">			
+						<div class="owl-carousel owl-theme js carausel_slider section_margin" id="slider-small">
+                            <% for(var i=0; i < recentArticles.length; i++) { %>
+                                <div class="item px-2">
+                                    <div class="alith_latest_trading_img_position_relative">
+                                        <figure class="alith_post_thumb">
+                                            <img src="images/<%= recentArticles[i].image %>" alt=""/></a>
+                                        </figure>
+                                        <div class="alith_post_title_small">
+                                            <a href="viewarticle/<%= recentArticles[i].Title %>"><strong><%= recentArticles[i].Title %></strong></a>
+                                            <p class="meta"><span><%= recentArticles[i].date %></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="container">
+					<div class="primary margin-15">
+					<div class="row">
+						<div class="col-md-8">
+							<div>
+								 <div id="map-canvas"></div>
+								 <div class="container-fluid w-50">
+									<h1>Pick A Date</h1>
+									<form action="newsDate" method="POST">
+										<div class="form-group">
+											<label for="Date">Date</label>
+											<input type="date" class="form-control" id="Date" name="newsDate">
+										</div>
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</form>
+								</div>				
+							</div>
+							<div class="post_list post_list_style_1">
+								<div class="alith_heading">
+									<h2 class="alith_heading_patern_2">Recent Posts</h2>
+								</div>
+
+
+						
+
+
+								<article class="row section_margin animate-box">
+									<% for(var i=0; i < recentArticles.length; i++) { %>
+									<div class="col-md-3 animate-box">							
+										<figure class="alith_news_img"><img src="images/<%= recentArticles[i].image %>" alt=""/></a></figure>
+									</div>
+									<div class="col-md-9 animate-box">
+										<h3 class="alith_post_title"><a href="viewarticle/<%= recentArticles[i].Title %>"><strong><%= recentArticles[i].Title %></strong></a>
+											<p class="meta"><span><%= recentArticles[i].date %></span></p></h3>
+										
+									</div>
+									<% } %>
+								</article>
+									
+							</div>
+                            
+						</div>
+						<!--Start Sidebar-->
+						<aside class="col-md-4 sidebar_right">
+							<div class="sidebar-widget animate-box">					
+                                <div class="widget-title-cover"><h4 class="widget-title"><span>Popular Articles</span></h4></div>
+                                <% for(var i=0; i < mostPopular.length; i++) { %>
+								<div class="latest_style_1">  
+									<div class="latest_style_1_item">                     
+									  <span class="item-count vertical-align"><%= i + 1 %>.</span>
+										<div class="alith_post_title_small">
+											<a href="viewarticle/<%= mostPopular[i].Title %>"><strong><%= mostPopular[i].Title %></strong></a>
+											<p class="meta"><span><%= mostPopular[i].date %></span></p>
+										</div>                                                  
+										<figure class="alith_news_img"><img src="images/<%= mostPopular[i].image %>" alt=""/></a></figure>
+									</div>
+                                </div>
+                                <% } %>
+							</div> <!--.sidebar-widget-->
+							
+							<div class="sidebar-widget animate-box">
+                                <div class="post_list post_list_style_1">
+								<div class="alith_heading">
+									<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Most Commented</h2>
+                                    <br>
+								</div>
+								<article class="row section_margin animate-box">
+										<% for(var i=0; i < mostPopular.length; i++) { %>
+									<div class="col-md-3 animate-box">							
+										<figure class="alith_news_img"><img src="images/<%= mostPopular[i].image %>" alt=""/></a></figure>
+									</div>
+									<div class="col-md-9 animate-box">
+											<a href="viewarticle/<%= mostPopular[i].Title %>"><strong><%= mostPopular[i].Title %></strong></a>
+											<p class="meta"><span><%= mostPopular[i].date %></span></p>
+									</div>
+									<% } %>
+								</article>
+								
+								
+							</div>
+								
+							</div> <!--.sidebar-widget-->
+							
+							<div class="sidebar-widget animate-box">
+							</div> <!--.sidebar-widget-->
+							
+							<div class="sidebar-widget animate-box">
+							</div> <!--.sidebar-widget-->
+							
+						</aside>
+						<!--End Sidebar-->
+					</div>
+					</div> <!--.primary-->
+					
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="container animate-box">
+					<div class="bottom margin-15">
+						<div class="row">            
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+								<div class="sidebar-widget"></div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+							</div>
+						</div> <!--.row-->
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid alith_footer_right_reserved">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-12 bottom-logo">
+							<h1 class="logo"><a href="index.html">GROUP 33 IS THE BEST</a></h1>
+							<div class="tagline social">
+								<ul>
+									<li class="facebook"><a href=""><i class="fa fa-facebook"></i></a></li>
+									<li class="twitter"><a href=""><i class="fa fa-twitter"></i></a></li>
+									<li class="google-plus"><a href=""><i class="fa fa-google-plus"></i></a></li>
+									<li class="instagram"><a href=""><i class="fa fa-instagram"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-12 col-md-12 coppyright"> <p>© Copyright 2019, All rights reserved. Design by Group33</p> </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="gototop js-top">
+				<a href="#" class="js-gotop"><span>Take Me Top</span></a>
+			</div>
+		</div> <!--page-content-wrapper-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="javascripts/owl.carousel.min.js"></script>
+		<script src="javascripts/jquery.waypoints.min.js"></script>
+		<script src="javascripts/jquery.slicknav.min.js"></script>
+		<script src="javascripts/masonry.pkgd.min.js"></script>
+		<!-- Main -->
+		<script src="javascripts/main.js"></script>
+		<script src="javascripts/smart-sticky.js"></script>
+		<script src="javascripts/theia-sticky-sidebar.js"></script>
+		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+		</script>
+		<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeWcFP4LtWiS8ckrXz1JytArU2YEXhMPc&callback=initMap">
+    </script>
+	</div> <!--#wrapper-->
+</body>
+</html>

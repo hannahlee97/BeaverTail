@@ -1,0 +1,144 @@
+/*Strip the ul of padding and list styling*/
+ul {
+    list-style-type: none;
+    background: white;
+    float: right;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* position: absolute; */
+}
+
+/*Create a horizontal list with spacing*/
+li {
+    /* display:inline-block; */
+    margin-right: 1px;
+    float: left;
+}
+
+.bg {
+    background: pink;
+}
+
+/*Style for menu links*/
+li a {
+    display: block;
+    min-width: 140px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #3dcdbc;
+    color: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    color: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+    /* background: #2f3036; */
+    text-decoration: none;
+}
+
+/*Hover state for top level links*/
+li:hover a {
+    /* background: #19c589; */
+    background: #3dcdbc;
+    background: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    background: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+    width: 100%;
+    height: 70px;
+}
+
+/*Make dropdown links vertical*/
+li ul li {
+    display: block;
+    float: none;
+}
+
+/*Prevent text wrapping*/
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #19c589;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+    
+    /* background-image: url(/assets/images/logo1.png); */
+}
+
+/*Hide checkbox*/
+input[type=checkbox] {
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked~#menu {
+    display: block;
+}
+
+/*Responsive Styles*/
+@media screen and (max-width: 760px) {
+    /*Make dropdown links appear inline*/
+    ul {
+        position: static;
+        display: none;
+    }
+    /*Create vertical spacing*/
+    li {
+        margin-bottom: 1px;
+    }
+    /*Make all menu links full width*/
+    ul li, li a {
+        width: 100%;
+    }
+    /*Display 'show menu' link*/
+    .show-menu {
+        display: block;
+    }
+}
+
+.topnav {
+    overflow: hidden;
+    /* background-color: #333; */
+    background-color: white;
+    padding-bottom:10px;
+}
+
+.topnav a {
+    float: right;
+    /* color: #f2f2f2; */
+    color: #3dcdbc;
+    color: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    color: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    color: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.topnav a:hover {
+    /* background-color: #ddd; */
+    color: white;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}

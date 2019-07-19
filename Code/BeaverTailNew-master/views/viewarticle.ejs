@@ -1,0 +1,67 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Login Register</title>
+ <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+ <link rel="stylesheet" href="../stylesheets/comment.css">
+ <script src="../javascripts/comment.js"></script>
+
+ <style>
+  html{
+   padding:50px;
+  }
+ </style>
+</head>
+<body>
+<center>
+<h1>
+    <%= title %>
+
+</h1>
+<p>
+    <%= news%>
+</p>
+
+<p><img src="/images/<%= picture %>" alt="picture" width="200px" height="250px"/></p>
+
+</center>
+<div>
+
+    <% comms.forEach(function (comms) { %>
+        <section class="comments">
+                <div class="comment-contents">
+                  <a href="#" class="comment-author" title="Comment Author"><h2><%=comms.userName%></h2></a>
+                  <p><%=comms.comment%></p>
+                  <div class="comment-infos">
+                  </div>
+                </div>
+        </section> <br> 
+     <% }) %>
+</div>
+<% if (sess.userName!= undefined){%>
+<button class="open-button" onclick="openForm()">Leave your comment</button>
+<% } %>
+<div class="form-popup" id="myForm">
+  <form action="/postComment/<%=title %>" class="form-container" method="post">
+    <h1>Leave your Comment</h1>
+
+    <label for="user"><b>User</b></label>
+    <input type="text" placeholder="User Name" name="username"  value="<%=sess.userName %>" readonly required>
+
+    <label for="psw"><b>Comment</b></label><br>
+    <textarea rows="5" cols="40" maxlength="250" name="comment"  placeholder="Comment...."></textarea>
+
+    <button type="submit" class="btn">Comment</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+
+
+</body>
+</html>

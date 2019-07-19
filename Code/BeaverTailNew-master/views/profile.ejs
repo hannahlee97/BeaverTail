@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script>
+   
+    function showeditbio(){
+        document.getElementById("editbio").innerHTML = '<form action="editbio" method="POST"> <input type="text" name="bio" > <button type="submit">Edit</button></form> ';
+        
+    }
+
+    function showeditname(){
+        document.getElementById("editname").innerHTML = '<form action="editname" method="POST"> <input type="text" name="name" > <button type="submit">Edit</button></form> ';
+        
+    }
+
+    function showeditemail(){
+        document.getElementById("editemail").innerHTML = '<form action="editemail" method="POST"> <input type="email" name="email" > <button type="submit">Edit</button></form> ';
+        
+    }
+
+    function showeditsocialmedia(){
+       
+        document.getElementById("editsocialmedia").innerHTML = '<form action="editsocialmedia" method="POST"> <input type="text" name="socialmedia" > <button type="submit">Edit</button></form> ';
+    }
+</script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Login Register</title>
+ <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+ <link rel="stylesheet" 
+ href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+ <style>
+  html{
+   padding:50px;
+  }
+ </style>
+</head>
+<body>
+
+ <div class="container">
+  <div class="page-header text-center">
+        <% if(typeof(message) != "undefined") { %>
+            <div class="alert alert-danger"><%= message %></div> 
+        <% } %>
+   <h1>My Profile</h1>
+   <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+  </div>
+
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="well">
+            <img src="images/<%= image %>" width="100" height="100">
+            <form method="post" enctype="multipart/form-data" action="/uploadimage">
+                <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
+                <button  type="submit">submit</button>
+            </form>
+     <h3><span class="fa fa-user"></span> Welcome <%= username %></h3>
+
+     <p>
+      <strong>id</strong> <%= id %> <br>
+      <strong>username</strong> <%= username %> <br>
+      <div id="editname"><strong>name</strong> <%= name %> &nbsp; <button type="button" onclick="showeditname()">edit</button></h1><br></div>
+      <div id="editemail"><strong>email</strong> <%= email %> &nbsp; <button type="button" onclick="showeditemail()">edit</button></h1><br></div>
+      <div id="editbio"><strong>bio</strong> <%= bio %> &nbsp; <button type="button" onclick="showeditbio()">edit</button></h1><br></div>
+      <div id="editsocialmedia"><strong>socialmedia</strong> <%= socialmedia %> &nbsp; <button type="button" onclick="showeditsocialmedia()">edit</button></h1><br></div>
+     <div id="showarticles"><strong>articles</strong>
+        <ul>
+                <% for(var i=0; i < article.length; i++) { %>
+                  <li>
+                      <a href="viewarticle/<%= article[i].title %>"><%= article[i].title %></a>
+                   </li>
+                <% } %>
+        </ul>
+    
+    </div>
+     
+      
+     </p>
+    </div>
+   </div>
+  </div>
+ </div>
+</body>
+</html>
