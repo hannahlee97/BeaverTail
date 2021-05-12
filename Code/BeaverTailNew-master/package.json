@@ -16,7 +16,7 @@
     "morgan": "~1.9.0",
     "multer": "*",
     "mysql": "*",
-    "nodemailer": "^6.1.1",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.19.0",
     "password-hash": "^1.2.2"
   }
